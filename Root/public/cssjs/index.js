@@ -14,13 +14,13 @@ function _(a) { //可以无视,类似alert.
 $(function() {  //可删除
 
     $(".bar_menu ul li").html(function() {
-        return $(this).index()
-    })
+        return $(this).index();
+    });
     /*		 $(".bar_menu h2").css({
 		"border-left":"#333333 solid 1px",
 		"border-right":"#111111 solid 1px"})*/
 
-})
+});
 
 $(function() {
 
