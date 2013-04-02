@@ -1,1 +1,18 @@
-﻿--创建表-
+-- 创建表-
+-- 栏目表
+CREATE TABLE IF NOT EXISTS `tb_cms_category` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `parent_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父类ID',
+  `name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '分类名称',
+  `display_order` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT '排序值',
+  `is_show` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否显示',
+  `url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '访问该栏目的url',
+  `content_type` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '分类展示的内容的类型',
+  `link_url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `link_target` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '链接的目标',
+  `article_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '显示文章的id',
+  `keyword` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '分类的关键字',
+  `description` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '分类的描述',
+  `created_at` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+)
