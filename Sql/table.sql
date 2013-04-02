@@ -1,4 +1,4 @@
--- 创建表-
+﻿-- 创建表-
 -- 栏目表
 CREATE TABLE IF NOT EXISTS `tb_cms_category` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
@@ -33,3 +33,16 @@ CREATE TABLE IF NOT EXISTS `tb_cms_category` (
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+-- 友情连接表
+CREATE TABLE IF NOT EXISTS `tb_site_friendlink` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '名称',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '地址',
+  `display_order` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '排序值',
+  `logo_url` varchar(255) NOT NULL DEFAULT '' COMMENT 'logo地址',
+  `logo_pic` varchar(255) NOT NULL DEFAULT '' COMMENT 'logo上传图片地址',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '网站描述',
+  `owner_email` varchar(50) NOT NULL DEFAULT '' COMMENT '站长email',
+  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
