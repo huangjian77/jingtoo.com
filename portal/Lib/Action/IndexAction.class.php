@@ -3,16 +3,9 @@
 class IndexAction extends Action {
     public function index(){
 	    $this->display();
-    }
-    
-    public function login(){
-    	$this->assign('showme','你好呀，记得要登录哦');
-    	$this->display();
-    }
+    }   
 
-    public function verify(){
-    	import('ORG.Util.Image');
-		Image::buildImageVerify();
+    public function login(){
+    	$this->display('Admin:login');
     }
-    
 }
