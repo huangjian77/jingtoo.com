@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1><?php echo ($showme); ?></h1>
-<form action="__URL__/Main/checklogin" method="post">
+<form action="__ADMIN__/Main/checklogin" method="post">
  用户名:<input type="text" name="username" /><br/>
  密码:<input type="password" name="password" /><br/>
  验证验：<input type="text" name="verify" />

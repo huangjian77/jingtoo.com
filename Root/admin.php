@@ -1,6 +1,6 @@
 <?php
 //开启调试模式
-#define('APP_DEBUG',TRUE);
+define('APP_DEBUG',TRUE);
 //define( 'CMS_ROOT', dirname( __FILE__ ).'/' );
 //HTML路径
 //define('HTML_PATH','./Public/statics/Html/');

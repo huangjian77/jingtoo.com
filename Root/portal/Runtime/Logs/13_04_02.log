@@ -1,0 +1,40 @@
+[ 2013-04-02T21:07:40+08:00 ] 127.0.0.1 /jingtoo/index.php/
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001993s ]
+INFO: [ route_check ] --END-- [ RunTime:0.002190s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000968s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001094s ]
+INFO: [ view_parse ] --START--
+INFO: Run ParseTemplate Behavior [ RunTime:0.011499s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011705s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000835s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000840s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000596s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000823s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003579s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000984s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001124s ]
+
+[ 2013-04-02T21:07:42+08:00 ] 127.0.0.1 /jingtoo/index.php/
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001544s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001741s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001237s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001454s ]
+INFO: [ view_parse ] --START--
+INFO: Run ParseTemplate Behavior [ RunTime:0.001797s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.001995s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000711s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000721s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000541s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000918s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003423s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001101s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001308s ]
+
