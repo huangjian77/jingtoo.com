@@ -1223,3 +1223,8 @@ INFO: [ view_end ] --END-- [ RunTime:0.000811s ]
 [ 2013-04-03T08:48:54+08:00 ] ERR: (ThinkException) 无法加载模块:Public
 [ 2013-04-03T09:14:19+08:00 ] ERR: (ThinkException) 非法操作:loginOut
 [ 2013-04-03T09:15:22+08:00 ] ERR: (ThinkException) Action:assgin您所请求的方法不存在！
+[ 2013-04-03T10:57:10+08:00 ] ERR: (ThinkException) 无法加载模块:__URL
+[ 2013-04-03T11:08:33+08:00 ] ERR: (ThinkException) 非法操作:Admin
+[ 2013-04-03T11:17:02+08:00 ] ERR: (ThinkException) 非法操作:Admin
+[ 2013-04-03T11:17:06+08:00 ] ERR: (ThinkException) 非法操作:Admin
+[ 2013-04-03T11:17:13+08:00 ] ERR: (ThinkException) 非法操作:Admin

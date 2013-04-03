@@ -39,6 +39,7 @@ class IndexAction extends Action {
     	session_destroy();
 		session(null);//清空session
 		$this->success('登出成功！');
-		$this->assign('jumpUrl',"__ROOT__/Index");
+		$this->assign('jumpUrl',"__ROOT__/Index/index");
+		//$this->display('Index:index');
 	}
 }
