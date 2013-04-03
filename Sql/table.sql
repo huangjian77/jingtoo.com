@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `tb_cms_category` (
   `display_order` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT '排序值',
   `is_show` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否显示',
   `url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '访问该栏目的url',
-  `content_type` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '分类展示的内容的类型',
+  `content_type` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '分类展示的内容的类型 文章列表、指定文章、内部链接、外部连接',
   `link_url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   `link_target` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '链接的目标',
   `article_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '显示文章的id',
