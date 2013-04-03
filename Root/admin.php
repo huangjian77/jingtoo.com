@@ -3,8 +3,7 @@
 define('APP_DEBUG',TRUE);
 
 //define( 'CMS_ROOT', dirname( __FILE__ ).'/' );
-//资源路径
-define('PUBLIC_PATH','./../Public/');
+
 //ThinkPHP路径
 define('THINK_PATH','./../ThinkPHP/');
 //定义项目名称和路径

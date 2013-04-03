@@ -23,9 +23,9 @@ class IndexAction extends Action {
 		if (empty($password)){
 			$this->error('登录密码不能为空！');
 		}
-		if(session('verify') != md5($verify)){
+		/*if(session('verify') != md5($verify)){
 			$this->error('验证码错误!');
-		}
+		}*/
 		if ($username !='admin'){
 			$this->error('用户名不存在，请检查！');
 		}else{
@@ -34,5 +34,11 @@ class IndexAction extends Action {
 			$this->success('登录成功！');
 		}
 		
+	}
+    public function loginOut(){
+    	session_destroy();
+		session(null);//清空session
+		$this->success('登出成功！');
+		$this->assign('jumpUrl',"__ROOT__/Index");
 	}
 }
