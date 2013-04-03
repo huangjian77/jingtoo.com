@@ -71,12 +71,12 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">菜单栏管理</li>
-              <li class="active"><a href="__URL__/show/3344/4455">新增栏目</a></li>
-              <li><a href="#">新增栏目</a></li>
-              <li><a href="#">新增栏目</a></li>
-              <li><a href="#">新增栏目</a></li>
-              <li class="nav-header">Sidebar</li>
+              <li class="nav-header">站点管理</li>
+              <li class="active"><a href="__URL__/show/3344/4455">saaaa</a></li>
+              <li><a href="#">bbb</a></li>
+              <li><a href="#">ddd</a></li>
+              <li><a href="#">eee</a></li>
+              <li class="nav-header">fff</li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
