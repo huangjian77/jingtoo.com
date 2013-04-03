@@ -1,6 +1,6 @@
 ﻿-- 创建表-
 -- 栏目表
-CREATE TABLE IF NOT EXISTS `tb_cms_category` (
+CREATE TABLE IF NOT EXISTS `jt_cms_category` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `parent_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父类ID',
   `name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '分类名称',
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `tb_cms_category` (
   PRIMARY KEY (`id`)
 )
 -- 文章列表
-CREATE TABLE IF NOT EXISTS `tb_cms_category` (
+CREATE TABLE IF NOT EXISTS `jt_cms_file` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父类ID',
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '分类名称',
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tb_cms_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 -- 友情连接表
-CREATE TABLE IF NOT EXISTS `tb_site_friendlink` (
+CREATE TABLE IF NOT EXISTS `jt_site_friendlink` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '名称',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '地址',
