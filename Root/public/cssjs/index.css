@@ -9,18 +9,34 @@ ul, li {
 	margin: 0;
 	list-style: none;
 }
-body { background: url(../images/0bg.gif) top repeat-x; }
-.out {
-	width: 1000px;
+button{	cursor: pointer;}
+body {
+	width: 100%;
+	background: #222222;
+url(../images/0bg.gif) top repeat-x;
+}
+.out1 {
 	background: #FFF;
+	width: 1000px;
 	margin: 0 auto;
 }
-.first_div { padding: 0 30px; bo rder: #F00 solid 1px;
+.out_div1 { padding: 0 30px; }
+.out2 {
+	width: 100%;
+	background: #EEEEEE;
+}
+.out_div2 {
+	background: #fff;
+	width: 1000px;
+	margin: 0 auto;
+}
+.out_div2_in { padding: 0 30px; }
+.out3 {
+	width: 1000px;
+	margin: 0 auto;
 }
 /*******************top_start*********************/
-.top {
-	height: 120px;
-	background: url(../images/1title.gif) no-repeat;
+.top { height: 120px; backgr ound: url(../images/1title.gif) no-repeat;
 }
 .top .logo {
 	float: left;
@@ -43,7 +59,7 @@ body { background: url(../images/0bg.gif) top repeat-x; }
 	position: relative;
 	z-index: 10;
 	height: 40px;
-	background: url(../images/2bar.gif) no-repeat;
+ backgr ound: url(../images/2bar.gif) no-repeat;
 	background: #1F1F1F;
 }
 .bar .home {
@@ -99,10 +115,38 @@ body { background: url(../images/0bg.gif) top repeat-x; }
 	background: url(../images/3img.gif) right no-repeat;
 }
 /*******************big_img_end ,business_start*********************/
-.business {
-	height: 244px;
-	background: url(../images/4.gif) no-repeat;
+.business { height: 244px;  backg round: url(../images/4.gif) no-repeat;
 }
+.business div {
+	height: 100%;
+	float: left;
+}
+.business img {
+	width: 40px;
+	height: 40px;
+	margin: 40px 0 6px 14px;
+}
+.business ul {
+	width: 170px;
+	height: 132px;
+	background: #F5F5F5;
+	border: #E5E5E5 solid 1px;
+	margin-right: 40px;
+}
+.business span {
+	font-weight: bold;
+	display: block;
+	margin: 6px 0 4px 10px;
+	font-size: 12px;
+}
+.business li {
+	line-height: 25px;
+	font-size: 12px;
+	width: 160px;
+	float: left;
+	padding-left: 10px;
+}
+/*******************big_img_end ,business_start*********************/
 .kouhao {
 	height: 115px;
 	background: url(../images/5kouhao.gif) no-repeat;
@@ -137,7 +181,7 @@ body { background: url(../images/0bg.gif) top repeat-x; }
 	border-top: 1px solid #e5e5e5;
 	border-bottom: 1px solid #e5e5e5;
 	height: 167px;
-	background: url(../images/7.gif) center no-repeat;
+ backgr ound: url(../images/7.gif) center no-repeat;
 }
 .partners_title {
 	height: 40px;
@@ -146,9 +190,12 @@ body { background: url(../images/0bg.gif) top repeat-x; }
 	font-weight: bold;
 	padding: 0 0 0 30px;
 }
-.partners_imgs { padding: 16px 20px; }
+.partners_imgs {
+	margin: 16px 20px;
+	overflow: hidden;
+}
 .partners ul {
-	width: 100%;
+	width: 200%;
 	height: 90px;
 }
 .partners li {
@@ -158,17 +205,31 @@ body { background: url(../images/0bg.gif) top repeat-x; }
 	margin: 0 10px;
 	float: left;
 }
-.partners img {
- 
- 
- 
+.partners img { float: right; }
+.partners button  {padding:0; background:none; border:none; }
+/*******************big_img_end ,business_start*********************/
+.index_jump {
+	height: 30px;
+	back ground: url(../images/7_gotop.gif) center no-repeat;
+}
+.index_jump button{
+	background:#FFF;
+	border:none;
+	height:100%;
+	margin:0 30px;
+
+}
+.index_jump .go_home{
+float:left;
+}
+.index_jump .go_top{
+float:right;
 }
 /*******************big_img_end ,business_start*********************/
-.go_top {
-	height: 30px;
-	background: url(../images/7_gotop.gif) center no-repeat;
-}
+/*******************big_img_end ,business_start*********************/
 .about {
+	color: #FFF;
+	font-size: 12px;
 	background: #111111;
 	height: 200px;
 }
@@ -176,19 +237,67 @@ body { background: url(../images/0bg.gif) top repeat-x; }
 	height: 200px;
 	width: 50%;
 	float: left;
-	background: url(../images/8left.gif) right no-repeat;
+ backg round: url(../images/8left.gif) right no-repeat;
+}
+.about_left dl {
+	margin: 0;
+	width: 33%;
+	float: left;
+}
+.about_left dt {
+	cursor: default;
+	font-weight: bold;
+	padding: 50px 0 4px 30px;
+}
+.about_left dd {
+	padding: 0 0 0 30px;
+	margin: 0;
+	line-height: 24px;
+}
+.about_left dd a {
+	color: #FFF;
+	text-decoration: none;
 }
 .about_right {
 	height: 200px;
 	width: 50%;
 	float: right;
-	background: url(../images/8right.gif) no-repeat;
+ bac kground: url(../images/8right.gif) no-repeat;
+	padding-top: 50px;
 }
-.bottom {
-	height: 80px;
-	background: #1A1A1A url(../images/9bottom.gif) center no-repeat;
+.about_right span {
+	font-size: 12px;
+	font-weight: bold;
 }
+.about_right p { line-height: 16px; }
+.about_right button {
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+	width: 145px;
+	height: 35px;
+	background: #222222;
+	border: none;
+	margin: 10px 16px 0 0;
+	line-height:35px;
+	vertical-align: middle;
+}
+.about_right span {
 
+
+ 
+	line-height:35px;
+	vertical-align: middle;
+}
+/*******************big_img_end ,business_start*********************/
+.bottom {
+	color: #FFF;
+	font-size: 12px;
+	height: 80px;
+	padding: 20px 0 0 30px;
+}
+.bottom p { line-height: 12px; }
+.bottom span { color: #F69C00; }
 
 
 

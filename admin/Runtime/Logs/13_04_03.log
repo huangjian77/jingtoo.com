@@ -1228,3 +1228,5 @@ INFO: [ view_end ] --END-- [ RunTime:0.000811s ]
 [ 2013-04-03T11:17:02+08:00 ] ERR: (ThinkException) 非法操作:Admin
 [ 2013-04-03T11:17:06+08:00 ] ERR: (ThinkException) 非法操作:Admin
 [ 2013-04-03T11:17:13+08:00 ] ERR: (ThinkException) 非法操作:Admin
+[ 2013-04-03T15:09:55+08:00 ] ERR: (ThinkException) 非法操作:show
+[ 2013-04-03T15:22:54+08:00 ] ERR: (ThinkException) 非法操作:show

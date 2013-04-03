@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>管理主界面</title>
+    <title>{$title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ZhengNL">
@@ -57,9 +57,9 @@
                                   登出&gt;&gt; <a href="__APP__/Index/loginOut" class="navbar-link">{$Think.session.jt_admin }</a> &lt;&lt;
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">首页</a></li>
-              <li><a href="#about">内容管理</a></li>
-              <li><a href="#contact">站点管理</a></li>
+              <li class='<?php if($name==1) echo'active' ?>'><a href="__URL__/index">首页管理</a></li>
+              <li class="<?php if($name==2) echo'active' ?>"><a href="__URL__/contentM">内容管理</a></li>
+              <li class="<?php if($name==3) echo'active' ?>"><a href="__URL__/siteM">站点管理</a></li>
             </ul>
            </div><!--/.nav-collapse -->
         </div>
