@@ -76,7 +76,7 @@
               <li><a href="#">新增栏目</a></li>
               <li><a href="#">新增栏目</a></li>
               <li><a href="#">新增栏目</a></li>
-              <li class="nav-header">Sidebar</li>
+              <li class="nav-header">文章管理</li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>

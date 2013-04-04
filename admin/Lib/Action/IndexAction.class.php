@@ -1,5 +1,5 @@
 <?php
-// 本类由系统自动生成，仅供测试用途
+
 class IndexAction extends Action {
     public function index(){
 	   $this->display('login');
@@ -39,7 +39,7 @@ class IndexAction extends Action {
     	session_destroy();
 		session(null);//清空session
 		$this->success('登出成功！');
-		$this->assign('jumpUrl',"__ROOT__/Index/index");
+		$this->assign('jumpUrl',"__ROOT__");
 		//$this->display('Index:index');
 	}
 }
