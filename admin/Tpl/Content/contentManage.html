@@ -1,0 +1,75 @@
+<include file="Default:header" />
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">  
+              <li class="nav-header"><h4>内容管理</h4></li>    
+              <li class="active"><a href="__URL__/contentManage">栏目管理</a></li>
+              <li><a href="__URL__/docManage">文章管理</a></li>                    
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span10">
+		<div>
+		  <div align="right"><a href="__URL__/addContent">新增</a></div>
+		  <table class="table">
+		  <caption align="right"></caption>
+		  <thead class="info">
+		    <tr>
+		      <th>排序</th>
+		      <th>栏目名称</th>
+		      <th>访问地址</th>
+		      <th>栏目内容</th>
+		      <th>是否显示</th>
+		      <th>描述</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <volist name="list" id="vo" mod="2"> 
+		     <eq name="mod" value="0"><tr class="info"></eq>
+		     <eq name="mod" value="1"><tr class="sucess"></eq>
+		      <td>{$vo.display_order}</td>
+		      <td>{$vo.name}</td>
+		      <td>{$vo.url}</td>
+		      <td>
+		        <if condition="($vo.content_type eq 0)" >文章列表
+		        <elseif condition="($vo.content_type eq 1)" />指定文章
+		        <elseif condition="($vo.content_type eq 2)" />内部链接
+		        <elseif condition="($vo.content_type eq 3)" />外部连接
+                </if>       
+		      </td>
+		      <td>
+		        <if condition="($vo.is_show eq 0)" >不显示
+		        <elseif condition="($vo.is_show eq 1)" />显示
+                </if> 
+		      </td>
+		      <td>{$vo.description}</td>
+		      <td>
+		        <a href="__URL__/editContent/contId/{$vo.id}">修改</a>
+		        <a href="__URL__/doDelContent/contId/{$vo.id}">删除</a>
+		      </td>
+		     </tr>
+		    </volist>
+		  </tbody>
+		</table>
+		</div>     
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+<include file="Default:footer" />
+<script type="text/javascript">
+<!--
+$(function(){
+
+});
+//-->
+</script>

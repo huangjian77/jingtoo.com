@@ -30,7 +30,7 @@ class IndexAction extends Action {
 			$this->error('用户名不存在，请检查！');
 		}else{
 			$_SESSION['jt_admin']='admin';
-			$this->assign('jumpUrl',"__APP__/Main");
+			$this->assign('jumpUrl',"__APP__/Home");
 			$this->success('登录成功！');
 		}
 		
