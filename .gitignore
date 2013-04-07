@@ -3,3 +3,7 @@
 *.buildpath
 *.project
 /.settings
+/portal/Runtime/Cache
+/portal/Runtime/Logs
+/admin/Runtime/Cache
+/admin/Runtime/Logs
