@@ -3,3 +3,5 @@
 *.buildpath
 *.project
 /.settings
+/portal/Runtime
+/admin/Runtime
