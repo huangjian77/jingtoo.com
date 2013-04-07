@@ -39,7 +39,7 @@ class ContentAction extends CommonAction{
 			}
 			//根据父节点，生成排序值
 			$data['display_order']=$this->CreateDisplayOrder($data['parent_id']);
-			if(false!==$content->add()){
+			if(false!==$content->add($data)){
 				//获取最新数据的编号 ，自动增长列
 				$userId = $content->getLastInsID();
 				echo '创建成功,用户编号是：'.$userId;
@@ -76,6 +76,8 @@ class ContentAction extends CommonAction{
 			}else{
 				$data['is_show']=1;
 			}
+			//根据父节点，生成排序值
+			$data['display_order']=$this->CreateDisplayOrder($data['parent_id'],$data['display_order']);
 			$where['id']=$data['id'];
 			$content->where($where)->save();
 			$this->assign('jumpUrl',"__APP__/Content/contentManage");
@@ -160,12 +162,19 @@ class ContentAction extends CommonAction{
 		$content = new CmsCategoryModel();
 		$where['parent_id']=$pid;
 		$lst = $content->where($where)->order('display_order')->select();
-		$count = count($lst).'';
+		$count = count($lst);
 		$res='';
 		if($displayOrder==0){//新增数据时调用
-			
+			$param['id']=$pid;
+			$parent = $content->where($param)->find();
+			$count +=1;
+			if ($count>9){
+				$res=$parent['display_order'].$count;
+			}else{
+				$res=$parent['display_order'].'0'.$count;
+			}
 		}else{
-			
+			$res='aaaa';
 		}
 		return $res;
 	}

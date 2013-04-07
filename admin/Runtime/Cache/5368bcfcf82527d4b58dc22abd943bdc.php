@@ -9,6 +9,7 @@
     
     <!-- Le styles -->
     <link href="__PUBLIC__/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -26,8 +27,7 @@
           padding-right: 5px;
         }
       }
-    </style>
-    <link href="__PUBLIC__/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    </style>    
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -54,12 +54,10 @@
           <a class="brand" href="#">浙江京图科技有限公司</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-                                  登出&gt;&gt; <a href="__APP__/Index/loginOut" class="navbar-link"><?php echo (session('jt_admin')); ?></a> &lt;&lt;
+                                 您好, <?php echo (session('jt_admin')); ?>[<a href="__APP__/Index/loginOut" class="navbar-link"> 登出</a>]
             </p>
             <ul class="nav">
-              <li class='<?php if($name==1) echo'active' ?>'><a href="__URL__/index">首页管理</a></li>
-              <li class="<?php if($name==2) echo'active' ?>"><a href="__URL__/contentM">内容管理</a></li>
-              <li class="<?php if($name==3) echo'active' ?>"><a href="__URL__/siteM">站点管理</a></li>
+<?php  if($name==1){ echo '<li class="active"><a href="__APP__/Home">首页管理</a></li>'. '<li><a href="__APP__/Content/contentManage">内容管理</a></li>'. '<li><a href="__APP__/Site">站点管理</a></li>'; }else if($name==2){ echo '<li><a href="__APP__/Home">首页管理</a></li>'. '<li class="active"><a href="__APP__/Content/contentManage">内容管理</a></li>'. '<li><a href="__APP__/Site">站点管理</a></li>'; }else if($name==3){ echo '<li><a href="__APP__/Home">首页管理</a></li>'. '<li><a href="__APP__/Content/contentManage">内容管理</a></li>'. '<li class="active"><a href="__APP__/Site">站点管理</a></li>'; } ?>
             </ul>
            </div><!--/.nav-collapse -->
         </div>
@@ -68,34 +66,46 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
+        <div class="span2">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">菜单栏管理</li>
-              <li class="active"><a href="__URL__/show/3344/4455">新增栏目</a></li>
-              <li><a href="#">新增栏目</a></li>
-              <li><a href="#">新增栏目</a></li>
-              <li><a href="#">新增栏目</a></li>
-              <li class="nav-header">文章管理</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
+            <ul class="nav nav-list">  
+              <li class="nav-header"><h4>内容管理</h4></li>    
+              <li><a href="__URL__/contentManage">栏目管理</a></li>
+              <li  class="active"><a href="__URL__/docManage">文章管理</a></li>                    
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
-          <div class="hero-unit">
-            <h1>Hello, world!</h1>
-            <p><?php echo ($param1); ?>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-            <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-          </div>
+        <div class="span10">
+		<div>
+		  <table class="table">
+		  <caption>栏目列表</caption>
+		  <thead class="info">
+		    <tr>
+		      <th>排序</th>
+		      <th>栏目名称</th>
+		      <th>访问地址</th>
+		      <th>栏目内容</th>
+		      <th>是否显示</th>
+		      <th>描述</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "暂时没有数据" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="">
+		      <td><?php echo ($vo["display_order"]); ?></td>
+		      <td><?php echo ($vo["name"]); ?></td>
+		      <td><?php echo ($vo["url"]); ?></td>
+		      <td><?php echo ($vo["content_type"]); ?></td>
+		      <td><?php echo ($vo["is_show"]); ?></td>
+		      <td><?php echo ($vo["description"]); ?></td>
+		      <td>
+		        <button class="btn btn-mini btn-info" type="button">修改</button>
+		        <button class="btn btn-mini btn-warning" type="button">删除</button>
+		      </td>
+		     </tr><?php endforeach; endif; else: echo "暂时没有数据" ;endif; ?>
+		  </tbody>
+		</table>
+		</div>     
         </div><!--/span-->
       </div><!--/row-->
 

@@ -54,12 +54,10 @@
           <a class="brand" href="#">浙江京图科技有限公司</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-                                  登出&gt;&gt; <a href="__APP__/Index/loginOut" class="navbar-link"><?php echo (session('jt_admin')); ?></a> &lt;&lt;
+                                 您好, <?php echo (session('jt_admin')); ?>[<a href="__APP__/Index/loginOut" class="navbar-link"> 登出</a>]
             </p>
             <ul class="nav">
-              <li class='<?php if($name==1) echo'active' ?>'><a href="__URL__/index">首页管理</a></li>
-              <li class="<?php if($name==2) echo'active' ?>"><a href="__URL__/contentM">内容管理</a></li>
-              <li class="<?php if($name==3) echo'active' ?>"><a href="__URL__/siteM">站点管理</a></li>
+<?php  if($name==1){ echo '<li class="active"><a href="__APP__/Home">首页管理</a></li>'. '<li><a href="__APP__/Content/contentManage">内容管理</a></li>'. '<li><a href="__APP__/Site">站点管理</a></li>'; }else if($name==2){ echo '<li><a href="__APP__/Home">首页管理</a></li>'. '<li class="active"><a href="__APP__/Content/contentManage">内容管理</a></li>'. '<li><a href="__APP__/Site">站点管理</a></li>'; }else if($name==3){ echo '<li><a href="__APP__/Home">首页管理</a></li>'. '<li><a href="__APP__/Content/contentManage">内容管理</a></li>'. '<li class="active"><a href="__APP__/Site">站点管理</a></li>'; } ?>
             </ul>
            </div><!--/.nav-collapse -->
         </div>
@@ -72,21 +70,9 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">站点管理</li>
-              <li class="active"><a href="__URL__/show/3344/4455">saaaa</a></li>
-              <li><a href="#">bbb</a></li>
-              <li><a href="#">ddd</a></li>
-              <li><a href="#">eee</a></li>
-              <li class="nav-header">fff</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
+              <li class="active"><a href="#">站点设置</a></li>
+              <li><a href="#">广告管理</a></li>
+              <li><a href="#">友情链接</a></li>              
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
