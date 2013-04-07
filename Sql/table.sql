@@ -1,4 +1,13 @@
 ﻿-- 创建表-
+-- 后台管理员表
+CREATE TABLE `jt_admin` (
+  `login_name` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员登陆名',
+  `name` char(32) NOT NULL COMMENT '管理员登陆密码',
+  `password` char(32) DEFAULT 'md5',
+  `last_time` int(11) DEFAULT '0',
+  `last_ip` char(15) DEFAULT '',
+  PRIMARY KEY (`mid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='后台管理员表'
 -- 栏目表
 CREATE TABLE IF NOT EXISTS `jt_cms_category` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
