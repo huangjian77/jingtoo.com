@@ -58,7 +58,7 @@ class ContentAction extends CommonAction{
 		$content = new CmsCategoryModel();
 		$where['id']=$contId;
 		$data = $content->where($where)->find();
-		$conList = $this->getContOptionList($data['parent_id']);
+		$conList = $this->getContOptionList($data['parent_id'],$data['id']);
 		$this->assign('data',$data);
 		$this->assign('conList',$conList);
 		$this->assign('title','修改栏目');
@@ -77,20 +77,15 @@ class ContentAction extends CommonAction{
 				$data['is_show']=1;
 			}
 			//根据父节点，生成排序值
-			$data['display_order']=$this->CreateDisplayOrder($data['parent_id'],$data['display_order']);
+			$newDisplayOrder=$this->CreateDisplayOrder($data['parent_id'],$data['display_order']);
+			$data['display_order']=$newDisplayOrder;
+			//设置修改条件
 			$where['id']=$data['id'];
-			$content->where($where)->save();
+			$content->where($where)->save($data);//save中的$data必须加，否则display_order修改无效
+			//修改该节点下的所有子节点的display_order
+			$this->changeChildDisplayOrder($data['id'],$newDisplayOrder);
 			$this->assign('jumpUrl',"__APP__/Content/contentManage");
 		    $this->success('修改成功');			
-			/*if(false!==$content->add()){
-				//获取最新数据的编号 ，自动增长列
-				$userId = $content->getLastInsID();
-				echo '创建成功,用户编号是：'.$userId;
-				$this->assign('jumpUrl',"__APP__/Content/contentManage");
-		        $this->success('新增成功');
-			}else{
-				echo '创建失败';
-			}*/
 		}else{
 			//验证失败
 			echo $content->getError();
@@ -108,77 +103,106 @@ class ContentAction extends CommonAction{
 	}
 	
    /**
-	 * 根据排序方式列出栏目hmtl中Select元素
-	 */
-	public function getContOptionList($pid=0){
+    * 根据排序方式列出栏目hmtl中Select元素
+    * @param $pid  父节点Id 默认为空
+    * @param $id   本节点Id 默认为空
+    */
+	public function getContOptionList($pid=0,$id=-1){
 		$content = new CmsCategoryModel();
 		$lst = $content->order('display_order')->select();
 		$res='<option value="0">根节点</option>';
+		$filter=array($id);
 		for ($i = 0; $i < count($lst); $i++) {
+			$data = $lst[$i];
+			if(in_array($data['id'],$filter) || in_array($data['parent_id'],$filter)){
+				array_push($filter, $data['id']);
+				continue;//跳过
+			}
 			$res.='<option value="';
-			$res.=$lst[$i]['id'];
-            if($lst[$i]['id']==$pid){
+			$res.=$data['id'];
+            if($data['id']==$pid){
             	$res.='" selected="selected">';
             }else{
             	$res.='">';
             }			
-			for($j=0;$j<strlen($lst[$i]['display_order']);$j++){
+			for($j=0;$j<strlen($data['display_order']);$j++){
 				$res.='&nbsp;&nbsp;';
 			}
-			$res.='|-&nbsp;'.$lst[$i]['name'];
+			$res.='|-&nbsp;'.$data['name'];
 			$res.="</option>";
 		}
 		return $res;
 	}
-	//递归生成栏目
-	public function getContOptionList1($pid=0){
-		$content = new CmsCategoryModel();
-		$where['parent_id']=$pid;
-		$lst = $content->where($where)->order('display_order')->select();
-		$res = '';
-		if($pid==0){
-			$res='<option value="0">根节点</option>';
-		}
-		for ($i = 0; $i < count($lst); $i++) {			
-			$res.='<option value="';
-			$res.=$lst[$i]['id'];
-			$res.='">';
-			for($j=0;$j<strlen($lst[$i]['display_order']);$j++){
-				$res.='&nbsp;&nbsp;';
-			}
-			//$res.='['.strlen($lst[$i]['display_order']).'级]';
-			$res.='|-&nbsp;'.$lst[$i]['name'];
-			$res.="</option>";
-			$res.=$this->getContOptionList1($lst[$i]['id']);
-		}
-		return $res;
-	}
+
 	/**
 	 * 根据父节点，生成排序值
-	 * Enter description here ...
-	 * @param unknown_type $pid
+	 * @param int $pid 新的父节点id 
+	 * @param string $displayOrder 旧的排序值
 	 */
-	public function CreateDisplayOrder($pid,$displayOrder=0){
+	public function CreateDisplayOrder($pid,$displayOrder='00'){
 		$content = new CmsCategoryModel();
 		$where['parent_id']=$pid;
 		$lst = $content->where($where)->order('display_order')->select();
 		$count = count($lst);
-		$res='';
-		if($displayOrder==0){//新增数据时调用
-			$param['id']=$pid;
-			$parent = $content->where($param)->find();
-			$count +=1;
-			if ($count>9){
-				$res=$parent['display_order'].$count;
+		//遍历数据集，找出中间断号或最大的display_order
+		$cur=0;
+		for ($i = 0; $i < $count; $i++) {
+			$disOrder=$lst[$i]['display_order'];
+			$oderStr=$disOrder;
+			if(strlen($disOrder)!=2){//说明不是一级栏目
+				$oderStr=substr($disOrder, strlen($disOrder)-2,2);
+			}			
+			if($cur+1==(int)$oderStr){
+				$cur = (int)$oderStr;
 			}else{
-				$res=$parent['display_order'].'0'.$count;
+				$cur =$cur+1;
+				break;
 			}
-		}else{
-			$res='aaaa';
 		}
+		$res='';
+	    if($cur>9){//二位的则直接转换成字符串
+			$res=$cur.'';
+		}else if($cur==$count){//说明排序没有断号，是连续的，即总数加一就是新的排序值
+			$res='0'.($count+1);
+		}else{//不足二位的前面补0
+			$res='0'.$cur;
+		}
+		
+		$param['id']=$pid;
+		$parent = $content->where($param)->find();
+		if(!is_null($parent)){//说明父节点不为空，即这不是一个根栏目
+			if($displayOrder=='00'){//新增数据时调用
+				$res=$parent['display_order'].$res;
+			}else{//修改栏目时调用
+				
+				$head=substr($displayOrder,0,strlen($displayOrder)-2);
+				
+				$nHead=$parent['display_order'].'';
+				$res=$nHead.$res;
+				/*if(strcmp($head,$nHead)){//0相同，则说明父节点没有变
+					$res=$displayOrder;
+				}else{
+					$res=$nHead.$res;
+				}*/
+			}
+		}	
 		return $res;
 	}
 	
+	public function changeChildDisplayOrder($id,$displayOrder){
+		$content = new CmsCategoryModel();   
+        //查询父节点为$id的所有子节点
+		$where['parent_id']=$id;
+		$lst = $content->where($where)->order('display_order')->select();
+		for ($i = 0; $i < count($lst); $i++) {
+		   $childId=$lst[$i]['id'];
+		   $oldDisplayOrder=$lst[$i]['display_order'];
+		   $order=substr($oldDisplayOrder,strlen($oldDisplayOrder)-2, 2);
+		   $data = array('display_order'=>$displayOrder.$order);
+		   $content->where('id='.$childId)->setField($data);
+		   $this->changeChildDisplayOrder($childId,$displayOrder.$order);
+		}
+	}
 	/**
 	 * 文章管理
 	 * Enter description here ...
