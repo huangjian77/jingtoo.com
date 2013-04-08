@@ -18,6 +18,7 @@
     </label>
     <label>栏目名称：<input type="text" name="contName" value="{$data['name']}"></label>
     <input type="hidden" name="id" value="{$data['id']}">
+    <input type="hidden" name="displayOrder" value="{$data['display_order']}">
     <label>是否显示：
       <select name="isShow" >
       <if condition="($data['is_show'] eq 1 )">        
