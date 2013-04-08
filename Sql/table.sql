@@ -1,12 +1,13 @@
 ﻿-- 创建表-
 -- 后台管理员表
 CREATE TABLE `jt_admin` (
-  `login_name` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员登陆名',
-  `name` char(32) NOT NULL COMMENT '管理员登陆密码',
-  `password` char(32) COMMENT 'md5',
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `login_name` int(10) unsigned NOT NULL  COMMENT '管理员登陆名',
+  `name` VARCHAR(32) NOT NULL COMMENT '管理员登陆密码',
+  `password` VARCHAR(32) COMMENT 'md5',
   `last_time` datetime,
-  `last_ip` char(15) DEFAULT '',
-  PRIMARY KEY (`mid`)
+  `last_ip` VARCHAR(15) DEFAULT '',
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='后台管理员表'
 -- 栏目表
 CREATE TABLE IF NOT EXISTS `jt_cms_category` (
@@ -70,6 +71,6 @@ CREATE TABLE `jt_site_ad` (
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='站点广告位表';
 
-insert  into `tb_site_ad`(`name`,`title`,`code`,`default_code`,`start_at`,`end_at`,`created_at`) values 
+insert  into `jt_site_ad`(`name`,`title`,`code`,`default_code`,`start_at`,`end_at`,`created_at`) values 
   ('ad_index_header_slider','首页头部图片轮播','','',0,0,0)
   ,('ad_index_about_me','底部京图简介','','',0,0,0);
