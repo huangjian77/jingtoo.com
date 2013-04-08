@@ -1,0 +1,56 @@
+<include file="Default:header" />
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">  
+              <li class="nav-header"><h4>内容管理</h4></li>    
+              <li><a href="__URL__/contentManage">栏目管理</a></li>
+              <li  class="active"><a href="__URL__/docManage">文章管理</a></li>                    
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span10">
+		<div>
+		  <table class="table">
+		  <caption>栏目列表</caption>
+		  <thead class="info">
+		    <tr>
+		      <th>排序</th>
+		      <th>栏目名称</th>
+		      <th>访问地址</th>
+		      <th>栏目内容</th>
+		      <th>是否显示</th>
+		      <th>描述</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <volist name="list" id="vo" mod="2" empty="暂时没有数据"> 
+		     <tr class="">
+		      <td>{$vo.display_order}</td>
+		      <td>{$vo.name}</td>
+		      <td>{$vo.url}</td>
+		      <td>{$vo.content_type}</td>
+		      <td>{$vo.is_show}</td>
+		      <td>{$vo.description}</td>
+		      <td>
+		        <button class="btn btn-mini btn-info" type="button">修改</button>
+		        <button class="btn btn-mini btn-warning" type="button">删除</button>
+		      </td>
+		     </tr>
+		    </volist>
+		  </tbody>
+		</table>
+		</div>     
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+<include file="Default:footer" />
