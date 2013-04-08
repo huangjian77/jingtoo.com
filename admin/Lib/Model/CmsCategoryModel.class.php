@@ -15,7 +15,7 @@ class CmsCategoryModel extends Model{
 	protected $_map = array(
 	  'parentId'=>'parent_id',//父类Id
 	  'contName'=>'name',       //分类名称
-	  //''=>'display_order',  //排序值
+	  'displayOrder'=>'display_order',  //排序值
 	  'isShow'=>'is_show',//是否显示
 	  'urlAddr'=>'url',    //访问该栏目的url
 	  'contType'=>'content_type',//分类展示的内容的类型:0文章列表、1指定文章、2内部链接、3外部连接
