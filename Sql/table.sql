@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `jt_cms_category` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `parent_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父类ID',
   `name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '分类名称',
-  `display_order` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT '排序值',
+  `display_order` VARCHAR(50) NOT NULL DEFAULT '0' COMMENT '排序值',
   `is_show` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否显示',
   `url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '访问该栏目的url',
   `content_type` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '分类展示的内容的类型 文章列表、指定文章、内部链接、外部连接',
@@ -61,6 +61,6 @@ CREATE TABLE `jt_site_ad` (
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='站点广告位表';
 
-insert  into `tb_site_ad`(`name`,`title`,`code`,`default_code`,`start_at`,`end_at`,`created_at`) values 
+insert  into `jt_site_ad`(`name`,`title`,`code`,`default_code`,`start_at`,`end_at`,`created_at`) values 
   ('ad_index_header_slider','首页头部图片轮播','','',0,0,0)
   ,('ad_index_about_me','底部京图简介','','',0,0,0);
