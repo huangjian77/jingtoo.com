@@ -8,6 +8,8 @@ $array =  array(
     'HOME_M'=>1,     //首页管理
     'CONTENT_M'=>2,  //内容管理
 	'SITE_M'=>3,     //站点管理
+	
+    'VAR_PAGE'=>'fy',//配置分页变量名称
 
 );
 //合并数组

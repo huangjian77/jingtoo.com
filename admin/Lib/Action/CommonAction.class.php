@@ -6,8 +6,7 @@ class CommonAction extends Action{
 		$a = $_SESSION['jt_admin'];
 		$this->assign('user',$a);
 		if(!empty($a) && $a=='admin'){			 
-			$this->assign("jumpUrl","__URL__/index");
-			 
+			$this->assign("jumpUrl","__URL__/index");			 
 		}else{
 			$this->assign("jumpUrl","__ROOT__");
 			$this->error("没有权限！！");			 

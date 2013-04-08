@@ -5,7 +5,7 @@ class ContentAction extends CommonAction{
 	 * Enter description here ...
 	 */
 	public function contentManage(){
-		$this->assign('title','内容管理');  //指定页面标题
+		$this->assign('title','栏目管理');  //指定页面标题
 		$this->assign('name',C('CONTENT_M') );//控制菜单栏焦点
 		$content = new CmsCategoryModel();
 		$list = $content->order('display_order')->select();
@@ -173,17 +173,10 @@ class ContentAction extends CommonAction{
 		if(!is_null($parent)){//说明父节点不为空，即这不是一个根栏目
 			if($displayOrder=='00'){//新增数据时调用
 				$res=$parent['display_order'].$res;
-			}else{//修改栏目时调用
-				
-				$head=substr($displayOrder,0,strlen($displayOrder)-2);
-				
+			}else{//修改栏目时调用				
+				$head=substr($displayOrder,0,strlen($displayOrder)-2);				
 				$nHead=$parent['display_order'].'';
 				$res=$nHead.$res;
-				/*if(strcmp($head,$nHead)){//0相同，则说明父节点没有变
-					$res=$displayOrder;
-				}else{
-					$res=$nHead.$res;
-				}*/
 			}
 		}	
 		return $res;
@@ -205,15 +198,89 @@ class ContentAction extends CommonAction{
 	}
 	/**
 	 * 文章管理
-	 * Enter description here ...
+	 * 分页显示
 	 */
     public function docManage(){
-		$this->assign('title','内容管理');  //指定页面标题
+		$this->assign('title','文章管理');  //指定页面标题
 		$this->assign('name',C('CONTENT_M') );//控制菜单栏焦点
-		$content = new CmsCategoryModel();
-		$list = null;
+		$article = new CmsArticleViewModel();
+		import('ORG.Util.Page');//导入分页类
+		$where['category_id']=$_GET['categoryId'];
+		$count = $article->where()->count();//查询满足要求的总记录数
+		$Page  = new Page($count,10);//实例化分页类，传入总记录数；每页显示10条数据
+		//进行分页数据查询，注意page方法的参数的前面部分是当前的页数使用$_GET[p]获取
+		$nowPage = isset($_GET[C('VAR_PAGE')])?$_GET[C('VAR_PAGE')]:1;//C(''VAR_PAGE')获取分页变量名称
+		
+		$list=$article->where()->order('CmsArticle.display_order')->page($nowPage.','.$Page->listRows)->select();
+		
+		$show  = $Page->show();//分页显示输出
+		$this->assign('page',$show);
 		$this->assign('list',$list);
+		$conList = $this->getContOptionList();
+		$this->assign('contentList',$conList);
 	  	$this->display('docManage');
 	}	
+	/**
+	 * 新增文章
+	 */
+    public function addArticle(){
+		$this->assign('title','新增文章');
+		$conList = $this->getContOptionList();
+		$this->assign('conList',$conList);
+		$writerList = $this->getWriterOptionList();
+		$this->assign('writerList',$writerList);
+		$this->display();
+	}
+	/**
+	 *新增文章动作 
+	 */
+	public function doAddArticle(){
+		$article = new CmsArticleModel();
+		if($data=$article->create()){
+			//表单验证成功，进行数据插入操作
+		if(false!==$article->add()){
+				//获取最新数据的编号 ，自动增长列
+				$this->assign('jumpUrl',"__APP__/Content/docManage");
+		        $this->success('新增成功');
+			}else{
+				echo '创建失败';
+			}
+		}
+	}
+	public function editArticle($contId){
+		$article = new CmsArticleModel();
+		$where['id']=$contId;
+		$data = $article->where($where)->find();
+		$conList = $this->getContOptionList($data['category_id']);
+		$this->assign('data',$data);
+		$this->assign('conList',$conList);
+		$writerList = $this->getWriterOptionList($data['author_id']);
+		$this->assign('writerList',$writerList);
+		$this->assign('title','修改文章');
+		$this->display('editArticle');
+		
+	}
+	/**
+	 *获取作者列表，即用户列表 
+	 * @param unknown_type $id
+	 */
+	public function getWriterOptionList($id=0){
+		$user = new AdminModel();
+		$lst = $user->select();
+		$res='';
+		for ($i = 0; $i < count($lst); $i++) {
+			$data = $lst[$i];
+			$res.='<option value="';
+			$res.=$data['id'];
+            if($data['id']==$id){
+            	$res.='" selected="selected">';
+            }else{
+            	$res.='">';
+            }			
+			$res.=$data['name'];
+			$res.="</option>";
+		}
+		return $res;
+	} 
 }
 ?>

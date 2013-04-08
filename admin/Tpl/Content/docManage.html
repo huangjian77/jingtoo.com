@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span2">
-          <div class="well sidebar-nav">
+          <div class="well sidebar-nav" style="height: 450px">
             <ul class="nav nav-list">  
               <li class="nav-header"><h4>内容管理</h4></li>    
               <li><a href="__URL__/contentManage">栏目管理</a></li>
@@ -12,36 +12,50 @@
         </div><!--/span-->
         <div class="span10">
 		<div>
+		  <div>
+		  <div align="left">
+		    <select name="contentId">{$contentList}</select>
+		    &nbsp;&nbsp;&nbsp;&nbsp;关键字&nbsp;&nbsp;<input type="text" name="keyWords">
+		  </div>
+		  <div align="right"><a href="__URL__/addArticle">新增</a></div>
+		  </div>		  
 		  <table class="table">
-		  <caption>栏目列表</caption>
 		  <thead class="info">
 		    <tr>
-		      <th>排序</th>
-		      <th>栏目名称</th>
-		      <th>访问地址</th>
-		      <th>栏目内容</th>
+		      <th>序号</th>
+		      <th>文章标题</th>
+		      <th>简介</th>
+		      <th>所属栏目</th>
 		      <th>是否显示</th>
-		      <th>描述</th>
+		      <th>作者</th>
+		      <th>创建于</th>
 		      <th>操作</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <volist name="list" id="vo" mod="2" empty="暂时没有数据"> 
-		     <tr class="">
-		      <td>{$vo.display_order}</td>
-		      <td>{$vo.name}</td>
-		      <td>{$vo.url}</td>
-		      <td>{$vo.content_type}</td>
-		      <td>{$vo.is_show}</td>
+		    <volist name="list" id="vo" mod="2"> 
+		     <eq name="mod" value="0"><tr class="info"></eq>
+		     <eq name="mod" value="1"><tr class="sucess"></eq>
+		      <td>{$i}</td>
+		      <td>{$vo.title}</td>
 		      <td>{$vo.description}</td>
+		      <td>{$vo.category_name}</td>
 		      <td>
-		        <button class="btn btn-mini btn-info" type="button">修改</button>
-		        <button class="btn btn-mini btn-warning" type="button">删除</button>
+		        <if condition="($vo.is_show eq 0)" >不显示
+		        <elseif condition="($vo.is_show eq 1)" />显示
+                </if> 
+		      </td>
+		      <td>{$vo.writer}</td>
+		      <td>{$vo.created_at}</td>		      
+		      <td>
+		        <a href="__URL__/editArticle/contId/{$vo.id}">修改</a>
+		        <a href="__URL__/doDelArticle/contId/{$vo.id}">删除</a>
 		      </td>
 		     </tr>
 		    </volist>
 		  </tbody>
 		</table>
+		<div class="result page">{$page}</div>
 		</div>     
         </div><!--/span-->
       </div><!--/row-->

@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span2">
-          <div class="well sidebar-nav">
+          <div class="well sidebar-nav"  style="height: 450px">
             <ul class="nav nav-list">  
               <li class="nav-header"><h4>内容管理</h4></li>    
               <li class="active"><a href="__URL__/contentManage">栏目管理</a></li>
@@ -17,7 +17,7 @@
 		  <caption align="right"></caption>
 		  <thead class="info">
 		    <tr>
-		      <th>排序</th>
+		      <th>序号</th>
 		      <th>栏目名称</th>
 		      <th>访问地址</th>
 		      <th>栏目内容</th>
@@ -30,7 +30,7 @@
 		    <volist name="list" id="vo" mod="2"> 
 		     <eq name="mod" value="0"><tr class="info"></eq>
 		     <eq name="mod" value="1"><tr class="sucess"></eq>
-		      <td>{$vo.display_order}</td>
+		      <td>{$i}</td>
 		      <td>{$vo.name}</td>
 		      <td>{$vo.url}</td>
 		      <td>

@@ -39,7 +39,10 @@ class CmsCategoryModel extends Model{
 	  array('is_show',array(0,1),'值的范围不正确！',0,'in'),
 	  array('created_at','require','创建时间不能为空！'),
 	);
-	
+	/**
+	 * 自动完成
+	 * @var unknown_type
+	 */
 	protected $_auto = array(
 	  array('created_at','getTime',1,'callback'),// 对created_at字段在更新的时候写入当前时间戳
 	  array('display_order','getDisplayOrder',1,'callback'),

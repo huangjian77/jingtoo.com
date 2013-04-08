@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$title}</title>
+<link href="__PUBLIC__/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="__PUBLIC__/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js">
+</script>
+</head>
+<body>
+
+<form action="__URL__/doAddArticle" method="post">
+<div class="container">     
+  <div class="row">
+    <div class="span12"><br/><br/></div>
+  </div>
+  <div class="row">
+   <div class="span12"><p>文章标题：<select name="categoryId" style="width:150px">{$conList}</select>
+      &nbsp;&nbsp;<input type="text" name="artTitle" style="width:450px" value="{$data['title']}"></p></div>
+  </div>
+  <div class="row">
+   <div class="span12">
+    <p>文章来源：
+       <select name="artSource" style="width:150px">
+         <if condition="($data['source'] eq 0 )"><option value='0' selected="selected">网络软文</option><else/><option value='0'>网络软文</option></if>         
+         <if condition="($data['source'] eq 1 )"><option value='1' selected="selected">政府文件</option><else/><option value='1'>政府文件</option></if>
+         <if condition="($data['source'] eq 2 )"><option value='2' selected="selected">法律法规</option><else/><option value='2'>法律法规</option></if>
+         <if condition="($data['source'] eq 3 )"><option value='3' selected="selected">公司文件</option><else/><option value='3'>公司文件</option></if>
+         <if condition="($data['source'] eq 4 )"><option value='4' selected="selected">项目文件</option><else/><option value='4'>项目文件</option></if>
+         <if condition="($data['source'] eq 5 )"><option value='5' selected="selected">其它</option><else/><option value='5'>其它</option></if>
+       </select>
+       &nbsp;&nbsp;作者：<select name="whoEditor" style="width:150px">{$writerList}</select>
+       &nbsp;&nbsp;是否显示：
+      <select name="isShow" style="width:150px">
+      <if condition="($data['is_show'] eq 1 )">        
+        <option value="1" selected="selected">是</option>
+        <option value="0">否</option>
+      <else />
+        <option value="1">是</option>
+        <option value="0" selected="selected">否</option> 
+      </if>  
+      </select> 
+       <br />
+       <textarea id="artContent" name="artContent">&lt;p&gt;输入内容.&lt;/p&gt;</textarea>
+       <script type="text/javascript">
+           CKEDITOR.replace( 'artContent' );
+       </script>
+    </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <p>&nbsp;关&nbsp;键&nbsp;字：<input type="text" name="keyWords" value="{$data['keyword']}" style="width:450px">
+         <strong>&nbsp;&nbsp;&nbsp;用逗号分开，不超过五个</strong></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <p>内容简介：<textarea name="describe" rows="3" cols="" style="width:450px">{$data['description']}</textarea>
+      </p>
+    </div>
+  </div>
+  <button type="submit" class="btn">提交</button>
+</div>
+</form>
+<include file="Default:footer" />

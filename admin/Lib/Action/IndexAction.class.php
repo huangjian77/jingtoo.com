@@ -14,8 +14,8 @@ class IndexAction extends Action {
     }
     
     public function doCheckLogin(){
-		$username=$_POST['inputUsername'];
-		$password=$_POST['inputPassword'];
+		$username=$_POST['loginName'];
+		$password=$_POST['pwd'];
 		$verify=$_POST['inputVerify'];
 	    if (empty($username)){
 			$this->error('用户名不能为空！');
@@ -26,14 +26,20 @@ class IndexAction extends Action {
 		/*if(session('verify') != md5($verify)){
 			$this->error('验证码错误!');
 		}*/
-		if ($username !='admin'){
-			$this->error('用户名不存在，请检查！');
+		$User = new AdminModel();
+		$where['login_name']=$username;
+		$data=$User->where($where)->find();
+		if(is_null($data)){
+			$this->error('用户不存在，请检查！');
 		}else{
-			$_SESSION['jt_admin']='admin';
-			$this->assign('jumpUrl',"__APP__/Home");
-			$this->success('登录成功！');
-		}
-		
+			if($data['password'] !=md5($password)){
+				$this->error('登录密码不对，请检查！'.md5($password));
+			}else{
+				$_SESSION['jt_admin']=$username;
+			    $this->assign('jumpUrl',"__APP__/Home");
+			    $this->success('登录成功！');
+			}
+		}		
 	}
     public function loginOut(){
     	session_destroy();
