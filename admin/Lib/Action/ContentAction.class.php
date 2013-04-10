@@ -22,7 +22,7 @@ class ContentAction extends CommonAction{
 	
 	public function addContent(){
 		$this->assign('title','新增栏目');
-		$conList = $this->getContOptionList();
+		$conList = $this->getContOptionList(0);
 		$this->assign('conList',$conList);
 		$this->display();
 	}
@@ -58,7 +58,7 @@ class ContentAction extends CommonAction{
 		$content = new CmsCategoryModel();
 		$where['id']=$contId;
 		$data = $content->where($where)->find();
-		$conList = $this->getContOptionList($data['parent_id'],$data['id']);
+		$conList = $this->getContOptionList(0,$data['parent_id'],$data['id']);
 		$this->assign('data',$data);
 		$this->assign('conList',$conList);
 		$this->assign('title','修改栏目');
@@ -104,13 +104,17 @@ class ContentAction extends CommonAction{
 	
    /**
     * 根据排序方式列出栏目hmtl中Select元素
+    * @param $needRoot  是否需要根节点  0 需要，其它不需要
     * @param $pid  父节点Id 默认为空
     * @param $id   本节点Id 默认为空
     */
-	public function getContOptionList($pid=0,$id=-1){
+	public function getContOptionList($needRoot,$pid=0,$id=-1){
 		$content = new CmsCategoryModel();
 		$lst = $content->order('display_order')->select();
-		$res='<option value="0">根节点</option>';
+		$res='';
+		if($needRoot==0){
+			$res='<option value="0">根节点</option>';
+		}
 		$filter=array($id);
 		for ($i = 0; $i < count($lst); $i++) {
 			$data = $lst[$i];
@@ -216,7 +220,7 @@ class ContentAction extends CommonAction{
 		$show  = $Page->show();//分页显示输出
 		$this->assign('page',$show);
 		$this->assign('list',$list);
-		$conList = $this->getContOptionList();
+		$conList = $this->getContOptionList(0);
 		$this->assign('contentList',$conList);
 	  	$this->display('docManage');
 	}	
@@ -225,7 +229,7 @@ class ContentAction extends CommonAction{
 	 */
     public function addArticle(){
 		$this->assign('title','新增文章');
-		$conList = $this->getContOptionList();
+		$conList = $this->getContOptionList(1);
 		$this->assign('conList',$conList);
 		$writerList = $this->getWriterOptionList();
 		$this->assign('writerList',$writerList);
@@ -251,7 +255,7 @@ class ContentAction extends CommonAction{
 		$article = new CmsArticleModel();
 		$where['id']=$contId;
 		$data = $article->where($where)->find();
-		$conList = $this->getContOptionList($data['category_id']);
+		$conList = $this->getContOptionList(1,$data['category_id']);
 		$this->assign('data',$data);
 		$this->assign('conList',$conList);
 		$writerList = $this->getWriterOptionList($data['author_id']);
@@ -259,6 +263,23 @@ class ContentAction extends CommonAction{
 		$this->assign('title','修改文章');
 		$this->display('editArticle');
 		
+	}
+	/**
+	 *编辑文章动作 
+	 */
+	public function doEditArticle(){
+		$article = new CmsArticleModel();
+		$data=$article->create();
+		if($data){
+			$where['id']=$data['id'];
+			$article->where($where)->save();
+			$this->assign('jumpUrl',"__APP__/Content/docManage");
+		    $this->success('修改文章成功');			
+		}else{
+			//$this->assign('jumpUrl',"__URL__");
+			//$this->error($article->getError());
+			exit($article->getError());
+		}		
 	}
 	/**
 	 *获取作者列表，即用户列表 

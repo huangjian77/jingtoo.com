@@ -7,19 +7,19 @@ class CmsArticleModel extends Model{
 	 */
 	protected $_map = array(	
        'artTitle'=>'title',//标题
-       ''=>'short_title',//短标题
+       //''=>'short_title',//短标题
        'categoryId'=>'category_id',//所属栏目ID
        'artSource'=>'source',//来源
-       ''=>'author_id',//作者ID
-       'whoEditor'=>'author',//作者
+       'whoEditor'=>'author_id',//作者ID
+       //'whoEditor'=>'author',//作者
        'keyWords'=>'keyword',//文章关键字
        'describe'=>'description',//文章描述
-       ''=>'views',//浏览次数
-       ''=>'display_order',//排序值
-       ''=>'is_show',//是否显示
-       ''=>'created_at',//创建时间
-       ''=>'updated_at',//最后更新时间
-       ''=>'picture',//缩略图地址
+       //''=>'views',//浏览次数
+       //''=>'display_order',//排序值
+       'isShow'=>'is_show',//是否显示
+       //''=>'created_at',//创建时间
+       //''=>'updated_at',//最后更新时间
+       //''=>'picture',//缩略图地址
        'artContent'=>'content',//内容
 	);
 	
@@ -29,12 +29,22 @@ class CmsArticleModel extends Model{
 	 * Enter description here ...
 	 * @var unknown_type
 	 */
-	protected $_validate = array();
+	protected $_validate = array(
+	   array('title','require','文章标题不能为空！'),
+	   array('content','require','文章内容不能为空！'),
+	);
 	
 	/**
 	 * 自动完成
 	 * @var unknown_type
 	 */
-	protected $_auto = array();
+	protected $_auto = array(
+	  array('created_at','getTime',1,'callback'),
+	  array('updated_at','getTime',2,'callback'),
+	);
+	
+    function getTime(){
+		return date("Y-m-d H:i:s");
+	}
 }
 ?>

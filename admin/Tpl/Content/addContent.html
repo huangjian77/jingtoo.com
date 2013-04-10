@@ -25,12 +25,12 @@
     </label>
     <label>URL地址：<input type="text" name="urlAddr"></label>
     <label>内容类型：
-     <select name="contType" >
+     <select name="contType"  id="contType">
        <option value="0" selected="selected">文章列表</option>
        <option value="1">指定文章</option>
        <option value="2">内部链接</option>
        <option value="3">外部连接</option>
-     </select>
+     </select><div></div><input type="text" name="artId"><button>选择</button></div>
     </label>
     <label>链接地址：<input type="text" name="LinkUrlAddr"></label>
     <label>链接目标：<input type="text" name="linkTarget"></label>
@@ -45,3 +45,10 @@
 </form>
 </div>
 <include file="Default:footer" />
+<script type="text/javascript">
+ $(function(){
+	 $("#contType").change(function(){
+        alert('aa');
+	 });
+ });
+</script>

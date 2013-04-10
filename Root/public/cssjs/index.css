@@ -9,7 +9,11 @@ ul, li {
 	margin: 0;
 	list-style: none;
 }
-button{	cursor: pointer;}
+a {  /*去掉下划线*/
+  text-decoration: none;
+}
+img { }
+button { cursor: pointer; }
 body {
 	width: 100%;
 	background: #222222;
@@ -53,7 +57,9 @@ url(../images/0bg.gif) top repeat-x;
 	border: none;
 	padding: 4px 4px 4px 28px;
 	margin: 2px;
+	vertical-align: top;
 }
+.top button img { vertical-align: top; }
 /*******************top_end ,bar_start*********************/
 .bar {
 	position: relative;
@@ -77,7 +83,7 @@ url(../images/0bg.gif) top repeat-x;
 	float: left;
 	height: 40px;
 }
-.bar h2 {
+.bar h2,.bar h2 a {
 	cursor: pointer;
 	font-size: 16px;
 	font-weight: normal;
@@ -87,7 +93,9 @@ url(../images/0bg.gif) top repeat-x;
 	line-height: 40px;
 	border-left: #333333 solid 1px;
 	border-right: #111111 solid 1px;
+	background: url(../images/icon/icon_1_4.gif) 88px 18px no-repeat;
 }
+.bar h2 img { vertical-align: middle; }
 .bar li { float: left; }
 .bar_menu ul {
 	height: 0;
@@ -97,8 +105,34 @@ url(../images/0bg.gif) top repeat-x;
 .bar_menu li {
 	width: 110px;
 	text-align: center;
+	cursor: pointer;
 }
-.bar_menu li ul li { }
+.bar_menu ul li {
+	height: 30px;
+	line-height: 30px;
+}
+.bar input {
+	color: #626562;
+	background: #1F1F1F;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	border-left: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	padding: 2px 4px;
+	margin: 8px 0 0 0;
+	float: right;
+}
+.bar button {
+ height:24px;
+ width:24px;
+ background:url(../images/icon/icon_1_5.png) 0 -24px no-repeat;
+ 
+ border:0;
+ float: right;
+ margin: 6px 0 0 0;
+ p osition:relative;
+ l eft:-24px;
+}
 /*******************bar_end ,big_img_start*********************/
 .big_img {
 	position: relative;
@@ -114,8 +148,13 @@ url(../images/0bg.gif) top repeat-x;
 	float: left;
 	background: url(../images/3img.gif) right no-repeat;
 }
+.big_img button {
+	height: 100%;
+	float: left;
+	background: url(../images/3img.gif) right no-repeat;
+}
 /*******************big_img_end ,business_start*********************/
-.business { height: 244px;  backg round: url(../images/4.gif) no-repeat;
+.business { height: 244px; backg round: url(../images/4.gif) no-repeat;
 }
 .business div {
 	height: 100%;
@@ -189,6 +228,7 @@ url(../images/0bg.gif) top repeat-x;
 	font-size: 14px;
 	font-weight: bold;
 	padding: 0 0 0 30px;
+	position: relative;
 }
 .partners_imgs {
 	margin: 16px 20px;
@@ -206,25 +246,22 @@ url(../images/0bg.gif) top repeat-x;
 	float: left;
 }
 .partners img { float: right; }
-.partners button  {padding:0; background:none; border:none; }
+.partners button {
+	padding: 0;
+	background: none;
+	border: none;
+}
 /*******************big_img_end ,business_start*********************/
-.index_jump {
-	height: 30px;
-	back ground: url(../images/7_gotop.gif) center no-repeat;
+.index_jump { height: 30px; back ground: url(../images/7_gotop.gif) center no-repeat;
 }
-.index_jump button{
-	background:#FFF;
-	border:none;
-	height:100%;
-	margin:0 30px;
-
+.index_jump button {
+	background: #FFF;
+	border: none;
+	height: 100%;
+	margin: 0 30px;
 }
-.index_jump .go_home{
-float:left;
-}
-.index_jump .go_top{
-float:right;
-}
+.index_jump .go_home { float: left; }
+.index_jump .go_top { float: right; }
 /*******************big_img_end ,business_start*********************/
 /*******************big_img_end ,business_start*********************/
 .about {
@@ -279,16 +316,14 @@ float:right;
 	background: #222222;
 	border: none;
 	margin: 10px 16px 0 0;
-	line-height:35px;
 	vertical-align: middle;
+	padding-left: 30px;
 }
-.about_right span {
-
-
- 
-	line-height:35px;
-	vertical-align: middle;
+.about_right button span {
+	float: left;
+	line-height: 35px;
 }
+.about_right button img { float: left; }
 /*******************big_img_end ,business_start*********************/
 .bottom {
 	color: #FFF;

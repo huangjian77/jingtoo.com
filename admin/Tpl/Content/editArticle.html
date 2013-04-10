@@ -10,13 +10,14 @@
 </head>
 <body>
 
-<form action="__URL__/doAddArticle" method="post">
+<form action="__URL__/doEditArticle" method="post">
 <div class="container">     
   <div class="row">
     <div class="span12"><br/><br/></div>
   </div>
   <div class="row">
    <div class="span12"><p>文章标题：<select name="categoryId" style="width:150px">{$conList}</select>
+      <input type="hidden" name="id" value="{$data['id']}" >
       &nbsp;&nbsp;<input type="text" name="artTitle" style="width:450px" value="{$data['title']}"></p></div>
   </div>
   <div class="row">
@@ -42,7 +43,7 @@
       </if>  
       </select> 
        <br />
-       <textarea id="artContent" name="artContent">&lt;p&gt;输入内容.&lt;/p&gt;</textarea>
+       <textarea id="artContent" name="artContent">{$data['content']}</textarea>
        <script type="text/javascript">
            CKEDITOR.replace( 'artContent' );
        </script>
