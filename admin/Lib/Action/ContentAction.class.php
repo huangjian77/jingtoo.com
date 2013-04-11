@@ -50,7 +50,8 @@ class ContentAction extends CommonAction{
 			}
 		}else{
 			//验证失败
-			echo $content->getError();
+			$this->assign('jumpUrl',"__APP__/Content/addContent");
+			$this->error($content->getError());
 		}		
 	}
    
@@ -280,6 +281,29 @@ class ContentAction extends CommonAction{
 			//$this->error($article->getError());
 			exit($article->getError());
 		}		
+	}
+	public function selectArticle(){
+		$article = new CmsArticleViewModel();
+		import('ORG.Util.Page');//导入分页类
+		$where['category_id']=$_GET['categoryId'];
+		$count = $article->where()->count();//查询满足要求的总记录数
+		$Page  = new Page($count,10);//实例化分页类，传入总记录数；每页显示10条数据
+		//进行分页数据查询，注意page方法的参数的前面部分是当前的页数使用$_GET[p]获取
+		$nowPage = isset($_GET[C('VAR_PAGE')])?$_GET[C('VAR_PAGE')]:1;//C(''VAR_PAGE')获取分页变量名称
+		
+		$list=$article->where()->order('CmsArticle.display_order')->page($nowPage.','.$Page->listRows)->select();
+		
+		$show  = $Page->show();//分页显示输出
+		$this->assign('page',$show);
+		$this->assign('list',$list);
+		$conList = $this->getContOptionList(0);
+		$this->assign('contentList',$conList);
+		$this->display();
+	}
+	
+	public function getArticleTitle(){
+		$artId =$_POST['artId'];
+		$this->success('您好：'+$artId);
 	}
 	/**
 	 *获取作者列表，即用户列表 

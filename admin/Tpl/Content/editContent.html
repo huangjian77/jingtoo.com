@@ -4,68 +4,159 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>{$title}</title>
 <link href="__PUBLIC__/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="__PUBLIC__/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="__PUBLIC__/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<style type="text/css">
+#selectArt {
+padding:4px;
+margin:5px;
+text-decoration: none;
+}
+.showInfo {
+  color: gray;
+}
+.showInfo strong {
+  color:red;
+}
+</style>
 </head>
 <body>
-<div class="container" >
 <form action="__URL__/doEditContent" method="post">
-<fieldset>
-    <legend>修改栏目</legend>
-    <label>父节点：<!--<input type="text" name="parentId" value="{$data['parent_id']}"> -->
-      <select name="parentId">
-        {$conList}
-      </select>
-    </label>
-    <label>栏目名称：<input type="text" name="contName" value="{$data['name']}"></label>
-    <input type="hidden" name="id" value="{$data['id']}">
-    <input type="hidden" name="displayOrder" value="{$data['display_order']}">
-    <label>是否显示：
-      <select name="isShow" >
+<div class="container" >
+<div class="row">
+    <div class="span12"><br/>新增栏目<br/></div>    
+</div>
+<table>
+   <tr>   
+     <td>父&nbsp;&nbsp;节&nbsp;&nbsp;点：<select name="parentId" style="width: 200px;">{$conList}</select></td>
+     <td>栏目名称：<input type="text" name="contName" value="{$data['name']}" >
+         <input type="hidden" name="id" value="{$data['id']}">
+         <input type="hidden" name="displayOrder" value="{$data['display_order']}">
+     </td>
+     <td>是否显示：
+      <select name="isShow" style="width: 80px;" >
       <if condition="($data['is_show'] eq 1 )">        
         <option value="1" selected="selected">是</option>
         <option value="0">否</option>
       <else />
         <option value="1">是</option>
         <option value="0" selected="selected">否</option> 
-      </if>  
-      </select>    
-    </label>
-    <label>URL地址：<input type="text" name="urlAddr" value="{$data['url']}"></label>
-    <label>内容类型：
-      <select name="contType" >
-       <if condition="($data['content_type'] eq 0)" >
+      </if> 
+      </select>
+     </td>
+   </tr>
+   <tr>
+     <td colspan="3" >URL地址：<input type="text" name="urlAddr" value="{$data['url']}"></td>
+   </tr>
+   <tr> 
+     <td>内容类型：
+         <select name="contType"  id="contType" style="width: 150px;">
+          <if condition="($data['content_type'] eq 0)" >
           <option value="0" selected="selected" >文章列表</option>
           <option value="1">指定文章</option>
-          <option value="2">内部链接</option>
+          <option value="2">展示定制内容</option>
           <option value="3">外部连接</option>
        <elseif condition="($data['content_type'] eq 1)" />
           <option value="0">文章列表</option>
           <option value="1" selected="selected" >指定文章</option>
-          <option value="2">内部链接</option>
+          <option value="2">展示定制内容</option>
           <option value="3">外部连接</option>
        <elseif condition="($data['content_type'] eq 2)" />
           <option value="0">文章列表</option>
           <option value="1">指定文章</option>
-          <option value="2" selected="selected" >内部链接</option>
+          <option value="2" selected="selected" >展示定制内容</option>
           <option value="3">外部连接</option>
        <elseif condition="($data['content_type'] eq 3)" />
           <option value="0">文章列表</option>
           <option value="1">指定文章</option>
-          <option value="2">内部链接</option>
+          <option value="2">展示定制内容</option>
           <option value="3" selected="selected" >外部连接</option>
-       </if>       
-     </select>
-    </label>
-    <label>链接地址：<input type="text" name="LinkUrlAddr" value="{$data['link_url']}"></label>
-    <label>链接目标：<input type="text" name="linkTarget" value="{$data['link_target']}"></label>
-    <label>显示文章：<input type="text" name="articleId" value="{$data['article_id']}"></label>
-    <label>关键字：<input type="text" name="keyWord" value="{$data['keyword']}"></label>
-    <label>描述：
-      <textarea rows="4" cols="20" name="descrip">{$data['description']}</textarea>
-    </label>
-    
-    <button type="submit" class="btn">提交</button>
-  </fieldset>
+       </if>
+         </select> 
+     </td>     
+     <td colspan="2">
+       <div class="showInfo">栏目展示页会显示该栏目下的文章列表</div>
+     </td>
+   </tr>
+   <tr>
+     <td colspan="3">       
+       <div id="docfile">显示文章：<input type="text" readonly="readonly" name="articleTitle" id="article_title"  >
+       <input type="hidden" name="articleId" id="article_id"  value="{$data['article_id']}">
+       <span class="label" id="selectArt">选择</span></div>
+       <div id="linkUrl">链接地址：<input type="text" name="LinkUrlAddr"  value="{$data['link_url']}"> 
+                       链接目标：
+         <select name="linkTarget" style="width: 180px;">
+          <if condition="($data['link_target'] eq '_blank')" >
+            <option value="_blank" selected="selected">_blank[另开一个窗口]</option>
+            <option value="_self">_self[自身窗口]</option>
+          <else/>
+            <option value="_blank">_blank[另开一个窗口]</option>
+            <option value="_self" selected="selected">_self[自身窗口]</option>
+          </if>          
+         </select></div> 
+     </td> 
+   </tr>
+   <tr>
+     <td colspan="3">栏目描述：<textarea rows="4" cols="20" name="descrip">{$data['description']}</textarea></td>
+   </tr>
+   <tr>
+     <td>关&nbsp;&nbsp;键&nbsp;&nbsp;字：<input type="text" name="keyWord" {$data['keyword']}></td>
+   </tr>
+</table>
+
+  <button type="submit" class="btn">提交</button>
+ </div>
 </form>
-</div>
 <include file="Default:footer" />
+<script type="text/javascript">
+ $(function(){
+	 $("#linkUrl").hide();
+	 $("#docfile").hide();
+	 changeInfo();//加载显示文章对应的状态
+	 $("#contType").change(function(){changeInfo();});
+     getArticleTitle();//获取文章标题
+
+
+     function getArticleTitle(){
+         var artId = $("#article_id").val();
+         if(artId !=0){
+             $.post({
+            	 url:'__URL__/getArticleTitle',
+            	 'artId':artId,
+            	 success:function(data){
+                	 alert(data);
+                 }
+             });
+         }
+     }
+	 function changeInfo(){
+        var i = $("#contType").val();
+        //根据选择不同的内容类型，显示不同的提示信息
+        $(".showInfo").empty();//清空showInfo的内容
+        if(i==0 || i==2){
+          $("#linkUrl").hide();
+       	  $("#docfile").hide(); 
+       	  if(i==0){
+       		$(".showInfo").append("栏目展示页会显示该栏目下的文章列表");
+          }else{
+        	  $(".showInfo").append("栏目会直接展示<strong>URL地址</strong>一栏中设置的地址的内容，<strong>必须保证该地址可以访问</strong>。");
+          }
+        }else if(i==1){
+          $("#docfile").show();
+          $("#linkUrl").hide();
+          $(".showInfo").append("栏目展示页会显示指定文章的内容 ");
+        } else if(i==3){
+        	$("#linkUrl").show();
+        	$("#docfile").hide(); 
+        	$(".showInfo").append("栏目不展示内容，通过链接跳转到其他页面;例如：<strong>http://www.baidu.com</strong>");
+        }
+	 };
+     //选择文章
+	 $("#selectArt").click(function(){
+		 window.open('__URL__/selectArticle', 
+					'selectArticle', 
+					'height=600, width=900,left=200, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no');
+	 });
+	 
+	 
+ });
+</script>
