@@ -45,7 +45,14 @@
        <br />
        <textarea id="artContent" name="artContent">{$data['content']}</textarea>
        <script type="text/javascript">
-           CKEDITOR.replace( 'artContent' );
+           CKEDITOR.replace( 'artContent',{
+        	   filebrowserBrowseUrl : '__PUBLIC__/ckeditor/ckfinder/ckfinder.html',
+        	   filebrowserImageBrowseUrl : '__PUBLIC__/ckeditor/ckfinder/ckfinder.html?Type=Images',
+        	   filebrowserFlashBrowseUrl : '__PUBLIC__/ckeditor/ckfinder/ckfinder.html?Type=Flash',
+        	   filebrowserUploadUrl : '__PUBLIC__/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        	   filebrowserImageUploadUrl : '__PUBLIC__/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        	   filebrowserFlashUploadUrl : '__PUBLIC__/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+               });
        </script>
     </p>
     </div>

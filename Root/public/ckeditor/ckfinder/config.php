@@ -62,7 +62,7 @@ Examples:
 ATTENTION: The trailing slash is required.
 */
 //$baseUrl = '/ckfinder/userfiles/';
-$baseUrl = '/Root/Uploads/';
+$baseUrl = '__ROOT__/Uploads/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -81,8 +81,8 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseDir = resolveUrl($baseUrl);
-
+//$baseDir = resolveUrl($baseUrl);
+$baseDir = 'F:/JTWork/GitHub/newenter/Root/Uploads/';
 /*
  * ### Advanced Settings
  */
