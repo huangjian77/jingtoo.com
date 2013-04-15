@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$title}</title>
+<link href="__PUBLIC__/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="__PUBLIC__/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js">
+</script>
+</head>
+<body>
+
+<form action="__URL__/doEditAd" method="post">
+<div class="container">     
+  <div class="row">
+    <div class="span12"><br/><br/></div>
+  </div>
+  <div class="row">
+   <div class="span12"><p>广告位标识：<input type="text" name="adName" value="{$data['name']}" style="width:250px">
+   &nbsp;&nbsp;&nbsp;广告位名称：<input type="text" name="adTitle" value="{$data['title']}" style="width:250px"></p></div>
+   <input type="hidden" name="id" value="{$data['id']}" >
+  </div>
+  <div class="row">
+   <div class="span12">
+    <p>代&nbsp;&nbsp; 码：
+       <textarea id="adCode" name="adCode">{$data['code']}</textarea>
+       <script type="text/javascript">
+           CKEDITOR.replace( 'adCode' );
+       </script>
+    </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <p>默认代码：<textarea rows="4" cols="20" style="width: 400px;" name="defaultAdCode">{$data['default_code']}</textarea></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <p>开始时间：<input type="text" name="startAt" value="{$data['start_at']}" style="width:250px"> 
+         &nbsp;&nbsp;&nbsp;结束时间：<input type="text" name="endAt" value="{$data['end_at']}" style="width:250px"> 
+      </p>
+    </div>
+  </div>
+  <button type="submit" class="btn">提交</button>
+</div>
+</form>
+<include file="Default:footer" />

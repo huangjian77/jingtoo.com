@@ -6,21 +6,13 @@ class SiteAdModel extends Model{
 	 * @var unknown_type
 	 */
 	protected $_map = array(	
-       ''=>'title',//标题
-       ''=>'short_title',//短标题
-       ''=>'category_id',//所属栏目ID
-       ''=>'source',//来源
-       ''=>'author_id',//作者
-       ''=>'author',//作者ID
-       ''=>'keyword',//文章关键字
-       ''=>'description',//文章描述
-       ''=>'views',//浏览次数
-       ''=>'display_order',//排序值
-       ''=>'is_show',//是否显示
-       ''=>'created_at',//创建时间
-       ''=>'updated_at',//最后更新时间
-       ''=>'picture',//缩略图地址
-       ''=>'content',//内容
+       'adName'=>'name',//广告位标识
+       'adTitle'=>'title',//广告位名称
+       'adCode'=>'code',//代码
+       'defaultAdCode'=>'default_code',//默认代码
+       'startAt'=>'start_at',//开始时间
+       'endAt'=>'end_at',//结束时间
+       'createAt'=>'created_at',//创建时间
 	);
 	
 	/**
@@ -29,12 +21,21 @@ class SiteAdModel extends Model{
 	 * Enter description here ...
 	 * @var unknown_type
 	 */
-	protected $_validate = array();
+	protected $_validate = array(
+	   array('adName','require','广告位标识不能为空!'),
+	   array('adName','','该广告位标识已经存在',0,'unique',1),//在新增的时候验证登录名字段是否唯一
+	   array('adTitle','require','广告位名称不能为空!'),
+	);
 	
 	/**
 	 * 自动完成
 	 * @var unknown_type
 	 */
-	protected $_auto = array();
+	protected $_auto = array(
+	   array('createAt','getTime',1,'callback'),
+	);
+    function getTime(){
+		return date("Y-m-d H:i:s");
+	}
 }
 ?>

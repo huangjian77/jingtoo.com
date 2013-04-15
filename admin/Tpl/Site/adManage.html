@@ -4,23 +4,25 @@
         <div class="span2">
           <div class="well sidebar-nav"  style="height: 450px">
             <ul class="nav nav-list">
-              <li class="nav-header"><h4>系统管理</h4></li>
-              <li class="active"><a href="__URL__/index">用户管理</a></li>
-              
+              <li class="nav-header"><h4>站点管理</h4></li>
+              <li><a href="__URL__/index">站点设置</a></li>
+              <li  class="active"><a href="__URL__/adManage">广告管理</a></li>
+              <li><a href="__URL__/friendLink">友情链接</a></li>              
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span10">
           <div>
-          <div align="right"><a href="__URL__/addUser">新增</a></div>
+		  <div align="right"><a href="__URL__/addAd">新增</a></div>
 		  <table class="table">
 		  <caption align="right"></caption>
 		  <thead class="info">
 		    <tr>
 		      <th>序号</th>
-		      <th>登录名</th>
-		      <th>别名</th>
-		      <th>最后登录时间</th>
+		      <th>广告标识</th>
+		      <th>广告位名称</th>
+		      <th>开始时间</th>
+		      <th>结束时间</th>
 		      <th>操作</th>
 		    </tr>
 		  </thead>
@@ -29,20 +31,24 @@
 		     <eq name="mod" value="0"><tr class="info"></eq>
 		     <eq name="mod" value="1"><tr class="sucess"></eq>
 		      <td>{$i}</td>
-		      <td>{$vo.login_name}</td>
 		      <td>{$vo.name}</td>
-		      <td>{$vo.last_time}</td>
+		      <td>{$vo.title}</td>
+		      <td>{$vo.start_at}</td>
+		      <td>{$vo.end_at}</td>
 		      <td>
-		        <a href="__URL__/editUser/Id/{$vo.id}">修改</a>
-		        <a href="__URL__/doDelUser/Id/{$vo.id}">删除</a>
+		        <a href="__URL__/editAd/adId/{$vo.id}">修改</a>
+		        <a href="__URL__/doDelAd/adId/{$vo.id}">删除</a>
 		      </td>
 		     </tr>
 		    </volist>
 		  </tbody>
 		</table>
-          </div>
+		</div>
         </div><!--/span-->
       </div><!--/row-->
+
+      <hr>
+
       <footer>
         <p>&copy; Company 2013</p>
       </footer>

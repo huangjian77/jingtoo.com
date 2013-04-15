@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$title}</title>
+<link href="__PUBLIC__/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="__PUBLIC__/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+<body>
+
+<form action="__URL__/doEditFriendlink" method="post">
+<div class="container">     
+  <div class="row">
+    <div class="span12"><br/><br/></div>
+  </div>
+  <div class="row">
+   <div class="span12"><p>名称：<input type="text" name="linkTitle" value="{$data['title']}" style="width:250px"><br/>
+   地址：<input type="text" name="linkUrl"  value="{$data['url']}" style="width:250px"></p></div>
+   <input type="hidden" name="id"  value="{$data['id']}" style="width:250px">
+  </div>
+  <div class="row">
+   <div class="span12">
+    <p>logo地址：<input type="text" name="logoUrl" value="{$data['logo_url']}"  style="width:250px">
+    </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <p>logo上传图片地址：<input type="text" name="logoPic" value="{$data['logo_pic']}"  style="width:250px"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <p>网站描述：<input type="text" name="descr"  value="{$data['description']}"  style="width:250px"><br/> 
+         站长email：<input type="text" name="ownerEmail"  value="{$data['owner_email']}"  style="width:250px"> 
+      </p>
+    </div>
+  </div>
+  <button type="submit" class="btn">提交</button>
+</div>
+</form>
+<include file="Default:footer" />

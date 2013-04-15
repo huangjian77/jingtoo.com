@@ -35,6 +35,9 @@ class IndexAction extends Action {
 			if($data['password'] !=md5($password)){
 				$this->error('登录密码不对，请检查！'.md5($password));
 			}else{
+				//记录最后登录时间
+				$fieldData=array('last_time'=>date("Y-m-d H:i:s"));
+				$User->where('id='.$data['id'])->setField($fieldData);
 				$_SESSION['jt_admin']=$username;
 			    $this->assign('jumpUrl',"__APP__/Home");
 			    $this->success('登录成功！');

@@ -41,8 +41,6 @@ class ContentAction extends CommonAction{
 			$data['display_order']=$this->CreateDisplayOrder($data['parent_id']);
 			if(false!==$content->add($data)){
 				//获取最新数据的编号 ，自动增长列
-				$userId = $content->getLastInsID();
-				echo '创建成功,用户编号是：'.$userId;
 				$this->assign('jumpUrl',"__APP__/Content/contentManage");
 		        $this->success('新增成功');
 			}else{
@@ -78,13 +76,20 @@ class ContentAction extends CommonAction{
 				$data['is_show']=1;
 			}
 			//根据父节点，生成排序值
-			$newDisplayOrder=$this->CreateDisplayOrder($data['parent_id'],$data['display_order']);
-			$data['display_order']=$newDisplayOrder;
+			$newParentId = $_POST['parentId'];
 			//设置修改条件
 			$where['id']=$data['id'];
-			$content->where($where)->save($data);//save中的$data必须加，否则display_order修改无效
-			//修改该节点下的所有子节点的display_order
-			$this->changeChildDisplayOrder($data['id'],$newDisplayOrder);
+			//判断修改时，父节点有没有变化
+			$ckdata = $content->where($where)->find();
+			if($newParentId !=$ckdata['parent_id']){//如果父节点改变了，则
+				$newDisplayOrder=$this->CreateDisplayOrder($data['parent_id'],$data['display_order']);
+			    $data['display_order']=$newDisplayOrder;
+			    $content->where($where)->save($data);//save中的$data必须加，否则display_order修改无效
+			    //修改该节点下的所有子节点的display_order
+			    $this->changeChildDisplayOrder($data['id'],$newDisplayOrder);
+			}else{
+				 $content->where($where)->save($data);
+			}
 			$this->assign('jumpUrl',"__APP__/Content/contentManage");
 		    $this->success('修改成功');			
 		}else{
